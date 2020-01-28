@@ -19,7 +19,7 @@ for:
       - image: Visual Studio 2017
 
   install:
-  - ps: Install-Package sdl2.nuget -RequiredVersion %SDL2_VERSION%
+  - ps: Install-Package sdl2.nuget -RequiredVersion %SDL2_VERSION% -Source https://www.nuget.org/api/v2
 - # MacOS setup
   matrix:
     only:
