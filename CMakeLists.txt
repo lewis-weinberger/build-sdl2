@@ -5,7 +5,6 @@ project(sdl2_test VERSION 0.1)
 # SDL2
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
 
 # Executable target
 add_executable(sdl2_test main.c)
