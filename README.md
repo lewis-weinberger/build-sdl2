@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/ab24pw2wpsklk064?svg=true)](https://ci.appveyor.com/project/lewis-weinberger/build-sdl2)
+
 This is an exercise in automating the building and release of software projects. The goal is to use continuous integration ([AppVeyor](https://www.appveyor.com/)) to build a simple cross-platform (Windows, MacOS, Linux) program with [SDL2](https://www.libsdl.org/), and automatically upload (successfully compiled) binaries (to [GitHub Releases](https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository)). See also [SRombauts/sdlman](https://github.com/SRombauts/sdlman).
 
 ## Details
