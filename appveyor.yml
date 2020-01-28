@@ -21,21 +21,23 @@ for:
   install:
   - appveyor DownloadFile http://libsdl.org/release/SDL2-devel-%SDL2_VERSION%-VC.zip
   - unzip -o SDL2-devel-%SDL2_VERSION%-VC.zip
-  - set SDL2_DIR=SDL2-%SDL2_VERSION%
+  - set SDL2_DIR="SDL2-%SDL2_VERSION%"
+  - echo %SDL2_DIR%
 - # MacOS setup
   matrix:
     only:
       - image: macos
       
   install:
-  - brew install sdl2
+  - brew install sdl2@$SDL2_VERSION
 - # Linux setup
   matrix:
     only:
       - image: Ubuntu
 
   install:
-  - sudo apt install -y libsdl2-dev
+  - sudo apt-get update
+  - sudo apt-get install -y libsdl2-dev=$SDL2_VERSION
 
 # Create build directory and run CMake
 before_build:
