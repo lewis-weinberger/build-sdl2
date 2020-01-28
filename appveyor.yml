@@ -19,7 +19,9 @@ for:
       - image: Visual Studio 2017
 
   install:
-  - ps: Install-Package sdl2.nuget -Source https://www.nuget.org/api/v2
+  - appveyor DownloadFile http://libsdl.org/release/SDL2-devel-%SDL2_VERSION%-VC.zip
+  - unzip -o SDL2-devel-%SDL2_VERSION%-VC.zip
+  - dir
 - # MacOS setup
   matrix:
     only:
