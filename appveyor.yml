@@ -4,6 +4,13 @@ image:
   - macos
   - Ubuntu
 
+artifacts:
+  - path: release.zip
+    name: Release
+
+# Only build on tags
+skip_non_tags: true
+
 # Set SDL2 version
 environment:
   SDL2_VERSION: 2.0.10
@@ -21,7 +28,9 @@ for:
   install:
   - appveyor DownloadFile http://libsdl.org/release/SDL2-devel-%SDL2_VERSION%-VC.zip
   - unzip -o SDL2-devel-%SDL2_VERSION%-VC.zip
-  - dir
+
+  after_build:
+  - 7z a myapp.zip %APPVEYOR_BUILD_FOLDER%\build\Debug\sdl2_test.exe
 - # MacOS setup
   matrix:
     only:
@@ -29,6 +38,9 @@ for:
       
   install:
   - brew install sdl2
+
+  after_build:
+  - zip release.zip $APPVEYOR_BUILD_FOLDER/build/sdl2_test
 - # Linux setup
   matrix:
     only:
@@ -37,6 +49,9 @@ for:
   install:
   - sudo apt-get update
   - sudo apt-get install -y libsdl2-dev
+
+  after_build:
+  - zip release.zip $APPVEYOR_BUILD_FOLDER/build/sdl2_test
 
 # Create build directory and run CMake
 before_build:
@@ -47,6 +62,9 @@ before_build:
 # Build program
 build_script:
   - cmake --build .
+
+# Package artifacts
+
 
 # Deploy build artifacts as releases
 #deploy:
