@@ -18,7 +18,7 @@ for:
     only:
       - image: Visual Studio 2017
 
-  init:
+  install:
   - appveyor DownloadFile http://libsdl.org/release/SDL2-devel-%SDL2_VERSION%-VC.zip
   - unzip -o SDL2-devel-%SDL2_VERSION%-VC.zip
 - # MacOS setup
@@ -26,15 +26,15 @@ for:
     only:
       - image: macos
       
-  init:
-  - sudo brew install sdl2@%SDL2_VERSION%
+  install:
+  - brew install sdl2@%SDL2_VERSION%
 - # Linux setup
   matrix:
     only:
       - image: Ubuntu
 
-  init:
-  - sh: sudo apt install -y libsdl2-dev=%SDL2_VERSION%
+  install:
+  - sudo apt install -y libsdl2-dev=%SDL2_VERSION%
 
 # Create build directory and run CMake
 before_build:
