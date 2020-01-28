@@ -24,19 +24,22 @@ for:
 - # MacOS setup
   matrix:
     only:
-      - image: sudo brew install sdl2@%SDL2_VERSION%
+      - image: macos
+      
+  init:
+  - sudo brew install sdl2@%SDL2_VERSION%
 
   init:
-  - sh: sudo apt install libsdl2-dev=%SDL2_VERSION%
 - # Linux setup
   matrix:
     only:
       - image: Ubuntu
 
   init:
-  - sh: sudo apt install libsdl2-dev
+  - sh: sudo apt install -y libsdl2-dev=%SDL2_VERSION%
 
 # Create build directory and run CMake
+before_script:
   - mkdir build
   - cd build
   - cmake ..
