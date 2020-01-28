@@ -37,7 +37,7 @@ for:
   - sh: sudo apt install -y libsdl2-dev=%SDL2_VERSION%
 
 # Create build directory and run CMake
-before_script:
+before_build:
   - mkdir build
   - cd build
   - cmake ..
