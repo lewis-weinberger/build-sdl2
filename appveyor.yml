@@ -28,8 +28,6 @@ for:
       
   init:
   - sudo brew install sdl2@%SDL2_VERSION%
-
-  init:
 - # Linux setup
   matrix:
     only:
