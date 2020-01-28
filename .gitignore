@@ -1,0 +1,6 @@
+# Emacs and Vim
+*~
+*.swp
+
+# Build directory
+*build*/

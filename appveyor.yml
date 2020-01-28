@@ -1,0 +1,56 @@
+# Setup different operating systems
+image:
+  - Visual Studio 2017
+  - macos
+  - Ubuntu
+
+# Set SDL2 version
+environment:
+  SDL2_VERSION: 2.0.10
+
+# Target x86_64
+platform: x64
+
+# Install SDL2 (platform specific)
+for:
+- # Windows setup
+  matrix:
+    only:
+      - image: Visual Studio 2017
+
+  init:
+  - appveyor DownloadFile http://libsdl.org/release/SDL2-devel-%SDL2_VERSION%-VC.zip
+  - unzip -o SDL2-devel-%SDL2_VERSION%-VC.zip
+- # MacOS setup
+  matrix:
+    only:
+      - image: sudo brew install sdl2@%SDL2_VERSION%
+
+  init:
+  - sh: sudo apt install libsdl2-dev=%SDL2_VERSION%
+- # Linux setup
+  matrix:
+    only:
+      - image: Ubuntu
+
+  init:
+  - sh: sudo apt install libsdl2-dev
+
+# Create build directory and run CMake
+  - mkdir build
+  - cd build
+  - cmake ..
+
+# Build program
+build_script:
+  - cmake --build .
+
+# Deploy build artifacts as releases
+#deploy:
+#    provider: GitHub
+#    artifact: *.exe
+#    draft: false
+#    prerelease: false
+#    on:
+#      branch: master                # release from master branch only
+#      APPVEYOR_REPO_TAG: true       # deploy on tag push only
