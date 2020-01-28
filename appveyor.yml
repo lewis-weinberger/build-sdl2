@@ -63,9 +63,6 @@ before_build:
 build_script:
   - cmake --build .
 
-# Package artifacts
-
-
 # Deploy build artifacts as releases
 #deploy:
 #    provider: GitHub
