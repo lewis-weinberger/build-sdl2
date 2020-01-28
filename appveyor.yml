@@ -19,7 +19,7 @@ for:
       - image: Visual Studio 2017
 
   install:
-  - ps: Install-Package sdl2.nuget -Version %SDL2_VERSION%
+  - ps: Install-Package sdl2.nuget -RequiredVersion %SDL2_VERSION%
 - # MacOS setup
   matrix:
     only:
