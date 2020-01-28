@@ -16,4 +16,4 @@ add_executable(sdl2_test main.c)
 target_include_directories(sdl2_test PUBLIC
                            "${PROJECT_BINARY_DIR}"
 			   "${SDL2_INCLUDE_DIR}")
-target_link_libraries(sdl2_test "${SDL2_LIBRARY}")
+target_link_libraries(sdl2_test "${SDL2_LIBRARY}" "${SDL2MAIN_LIBRARY}")
