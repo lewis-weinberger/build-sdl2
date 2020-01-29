@@ -26,11 +26,12 @@ for:
   - unzip -o SDL2-devel-%SDL2_VERSION%-VC.zip
 
   after_build:
-  - 7z a %APPVEYOR_BUILD_FOLDER%\windows.zip %APPVEYOR_BUILD_FOLDER%\build\Debug\sdl2_test.exe
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - 7z a windows-x86_64.zip build\Debug\sdl2_test.exe SDL2-LICENSE.txt LICENSE
   - dir
 
   artifacts:
-  - path: windows.zip
+  - path: windows-x86_64.zip
     name: Windows-Release
 - # MacOS setup
   matrix:
@@ -38,14 +39,15 @@ for:
       - image: macos
       
   install:
-  - brew install sdl2
+  - brew install sdl2 ninja
 
   after_build:
-  - zip $APPVEYOR_BUILD_FOLDER/macos.zip $APPVEYOR_BUILD_FOLDER/build/sdl2_test
+  - cd $APPVEYOR_BUILD_FOLDER
+  - zip macos-x86_64.zip build/sdl2_test SDL2-LICENSE.txt LICENSE
   - ls
 
   artifacts:
-  - path: macos.zip
+  - path: macos-x86_64.zip
     name: MacOS-Release
 - # Linux setup
   matrix:
@@ -54,21 +56,22 @@ for:
 
   install:
   - sudo apt-get update
-  - sudo apt-get install -y libsdl2-dev
+  - sudo apt-get install -y libsdl2-dev ninja-build
 
   after_build:
-  - zip $APPVEYOR_BUILD_FOLDER/linux.zip $APPVEYOR_BUILD_FOLDER/build/sdl2_test
+  - cd $APPVEYOR_BUILD_FOLDER
+  - zip linux-x86_64.zip build/sdl2_test SDL2-LICENSE.txt LICENSE
   - ls
 
   artifacts:
-  - path: linux.zip
+  - path: linux-x86_64.zip
     name: Linux-Release
 
 # Create build directory and run CMake
 before_build:
   - mkdir build
   - cd build
-  - cmake ..
+  - cmake -GNinja ..
 
 # Build program
 build_script:
