@@ -31,21 +31,10 @@ for:
   after_build:
   - cd %APPVEYOR_BUILD_FOLDER%
   - 7z a windows-x86_64.zip build\sdl2_test.exe SDL2-LICENSE.txt LICENSE
-  - dir
 
   artifacts:
   - path: windows-x86_64.zip
     name: Windows-Release
-
-  deploy:
-    provider: GitHub
-    artifact: Windows-Release
-    description: 'Windows Release x86_64'
-    auth_token:
-      secure: v2mYVuYMnUOmZzKbLhyxjVMH5pQBNJCoXLNhpWfZHPmvhUDhHbgXRKL1T9CWuVyO
-    draft: true
-    on:
-      APPVEYOR_REPO_TAG: true
 - # MacOS setup
   matrix:
     only:
@@ -57,21 +46,10 @@ for:
   after_build:
   - cd $APPVEYOR_BUILD_FOLDER
   - zip macos-x86_64.zip build/sdl2_test SDL2-LICENSE.txt LICENSE
-  - ls
 
   artifacts:
   - path: macos-x86_64.zip
     name: MacOS-Release
-
-  deploy:
-    provider: GitHub
-    artifact: MacOS-Release
-    description: 'MacOS Release x86_64'
-    auth_token:
-      secure: v2mYVuYMnUOmZzKbLhyxjVMH5pQBNJCoXLNhpWfZHPmvhUDhHbgXRKL1T9CWuVyO
-    draft: true
-    on:
-      APPVEYOR_REPO_TAG: true
 - # Linux setup
   matrix:
     only:
@@ -84,21 +62,10 @@ for:
   after_build:
   - cd $APPVEYOR_BUILD_FOLDER
   - zip linux-x86_64.zip build/sdl2_test SDL2-LICENSE.txt LICENSE
-  - ls
 
   artifacts:
   - path: linux-x86_64.zip
     name: Linux-Release
-
-  deploy:
-    provider: GitHub
-    artifact: Linux-Release
-    description: 'Linux Release x86_64'
-    auth_token:
-      secure: v2mYVuYMnUOmZzKbLhyxjVMH5pQBNJCoXLNhpWfZHPmvhUDhHbgXRKL1T9CWuVyO
-    draft: true
-    on:
-      APPVEYOR_REPO_TAG: true
 
 # Create build directory and run CMake
 before_build:
@@ -109,3 +76,13 @@ before_build:
 # Build program
 build_script:
   - cmake --build .
+  
+# Deploy to GitHub Releases
+deploy:
+  provider: GitHub
+  description: 'Release'
+  auth_token:
+    secure: v2mYVuYMnUOmZzKbLhyxjVMH5pQBNJCoXLNhpWfZHPmvhUDhHbgXRKL1T9CWuVyO
+  draft: true
+  on:
+    APPVEYOR_REPO_TAG: true

@@ -4,7 +4,7 @@ This is an exercise in automating the building and release of software projects.
 
 ## Details
 
-We are going to use [CMake](https://cmake.org/) for our build system. The application, [`main.c`](./main.c), is a small program written in C which presents the user with a blank window until closed.
+We are going to use [CMake](https://cmake.org/) and [ninja](https://ninja-build.org/) for our build system. The application, [`main.c`](./main.c), is a small program written in C which presents the user with a blank window until closed.
 
 We will bundle the application slightly differently on each platform, but dynamically link against SDL2 in all cases ([...as is recommendend](https://hg.libsdl.org/SDL/file/default/docs/README-dynapi.md)).
 
@@ -15,6 +15,12 @@ We will bundle the application slightly differently on each platform, but dynami
 3. **Linux**: We will provide only the binary executable and license file. Linux users will need to install the SDL2 shared library through their favourite package manager, or manually from source. Compiling with `GNU` toolchain.
 
 AppVeyor has functionality to upload build artifacts to GitHub as releases. We will setup the following basic automation pipeline: pushing a new tag to GitHub will initiate an AppVeyor build that will upload a release under that tag label. Note also that AppVeyor has a [free service](https://www.appveyor.com/pricing/) for open source software.
+
+## To-Do
+
+- Include Windows DLL alongside executable.
+- Download and use framework instead of homebrew on MacOS, so that an app bundle can be created with framework.
+- Set up proper packaging with `cpack`?
 
 ## Licensing
 
