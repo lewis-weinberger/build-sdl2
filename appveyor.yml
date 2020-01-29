@@ -21,6 +21,9 @@ for:
     only:
       - image: Visual Studio 2017
 
+  init:
+  - %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+
   install:
   - appveyor DownloadFile http://libsdl.org/release/SDL2-devel-%SDL2_VERSION%-VC.zip
   - unzip -o SDL2-devel-%SDL2_VERSION%-VC.zip
