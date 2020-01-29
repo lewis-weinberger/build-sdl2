@@ -30,7 +30,7 @@ for:
 
   after_build:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - 7z a windows-x86_64.zip build\Debug\sdl2_test.exe SDL2-LICENSE.txt LICENSE
+  - 7z a windows-x86_64.zip build\sdl2_test.exe SDL2-LICENSE.txt LICENSE
   - dir
 
   artifacts:
