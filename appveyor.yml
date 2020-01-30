@@ -30,7 +30,8 @@ for:
 
   after_build:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - 7z a windows-x86_64.zip build\sdl2_test.exe SDL2-LICENSE.txt LICENSE
+  - copy %APPVEYOR_BUILD_FOLDER%\SDL2-%SDL2_VERSION%\lib\x64\SDL2.dll %APPVEYOR_BUILD_FOLDER%\build\SDL2.dll
+  - 7z a windows-x86_64.zip build\sdl2_test.exe build\SDL2.dll SDL2-LICENSE.txt LICENSE
 
   artifacts:
   - path: windows-x86_64.zip
@@ -45,7 +46,7 @@ for:
 
   after_build:
   - cd $APPVEYOR_BUILD_FOLDER
-  - zip macos-x86_64.zip build/sdl2_test SDL2-LICENSE.txt LICENSE
+  - zip macos-x86_64.zip build/sdl2_test.app SDL2-LICENSE.txt LICENSE
 
   artifacts:
   - path: macos-x86_64.zip
