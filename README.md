@@ -18,7 +18,6 @@ AppVeyor has functionality to upload build artifacts to GitHub as releases. We w
 
 ## To-Do
 
-- Include Windows DLL alongside executable.
 - Download and use framework instead of homebrew on MacOS, so that an app bundle can be created with framework.
 - Set up proper packaging with `cpack`?
 
